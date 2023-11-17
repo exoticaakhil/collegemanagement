@@ -1,0 +1,95 @@
+{% extends 'navbar.html' %}
+{% block content %}
+{% load static %}
+<body style='background-color:#5c645e;'>
+    
+
+<br><br>
+
+<div class="container col-sm-8">
+    
+        
+            <center><h1 style="color: #481919;">Teacher Registration <i class="fa-solid fa-graduation-cap"></i></h1></center>
+            {% if messages %}
+            {% for i in messages %}
+            
+              <center>  <h2 {% if i.tags %} class="{{i.tags}}" {% endif %} style="border-radius: 50px; background-color: white; padding: 10px 0;">{{i}}</h2></center>
+              
+            {% endfor %} 
+            {% endif %}
+            
+             <br>
+            <form action="{% url 'signupaction' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row ">
+                    <div class="form-group col">
+                        <label class="ml-2" for="fn">First name</label>
+                        <input type="text" name="fname" id="fn" style="color: #e77272;" class="form-control">
+                    </div>
+                    <div class="form-group col">
+                        <label class="ml-2" for="ln">Last name</label>
+                        <input type="text" name="lname" id="ln" style="color: #e77272;" class="form-control">
+                    </div>
+                    <div class="form-group col">
+                        <label class="ml-2" for="un">Username</label>
+                        <input type="text" name="uname" id="un" style="color: #e77272;" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="ml-2" for="pa">Password</label>
+                        <input type="password" name="pass" id="pa" style="color: #f75858;" class="form-control">
+                    </div>
+                    <div class="form-group col">
+                        <label class="ml-2" for="cp">Confirm Password</label>
+                        <input type="password" name="cpass" id="cp" style="color: #e77272;" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="ml-2" for="em">Email</label>
+                    <input type="email" name="email" id="em" style="color: #e77272;" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="ml-2" for="ad">Address</label>
+                    <input type="text" name="address" id="ad" style="color: #e77272;" class="form-control">
+                </div>
+                <div class="row">
+                    <div class="form-group col-3">
+                        <label class="ml-2" for="age">Age</label>
+                        <input type="number" name="age" id="age" style="color: #e77272;" class="form-control">
+                    </div>
+                    <div class="form-group col">
+                        <label class="ml-2" for="cn">Contact Number</label>
+                        <input type="text" name="contact" id="cn" style="color: #e77272;" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label class="ml-2" for="cn">Gender</label>
+                    <input type="radio" value="male" name="gender" id="cn" style="color: #e77272;" class=""> male
+                    <input type="radio" value="female" name="gender" id="cn" style="color: #e77272;" class=""> female
+                </div>
+                <div class="form-group col">
+                    <label class="ml-2" for="cn">join date</label>
+                    <input type="date" name="date" id="cn" style="color: #e77272;" class="form-control">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="course" id="">
+                        {% for i in c %}
+                        <option value="{{i.id}}">{{i.coursename}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="ml-2" for="im">Image : </label>
+                    <input style="font-size: larger;color: #e77272;" class="btn" type="file" name="image" id="im" required>
+                </div>
+    
+                <button type="submit" class="btn  ml-5" style=" background-color:#f75858 ; font-weight: 500; width: 30%;border-radius: 50px;">Submit </button>
+            </form>
+            
+        
+</div>
+<br><br><br><br><br><br><br>
+</body>
+{% endblock %}
